@@ -18,7 +18,7 @@
 +(BOOL)deleteDeck:(DeckModel*)deck;
 /** Returns success */
 +(BOOL)publishCard:(CardModel*)card withImage:(UIImage*)image;
-+(BOOL)saveCard:(CardModel*)card;
+//+(void)saveCard:(CardModel*)card;
 /** Refreshes the parse user by querying from database */
 +(void)updateUser:(void (^)())onFinishBlock;
 /** Returns true if userAllCards contains a card with same ID */

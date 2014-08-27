@@ -25,6 +25,7 @@
         [background.layer setBorderColor:[UIColor blackColor].CGColor];
         [background.layer setBorderWidth:2];
         
+        
         self.backgroundColor = [UIColor clearColor];
         
         _nameLabel = [[StrokedLabel alloc]initWithFrame:CGRectMake(self.bounds.origin.x, self.bounds.origin.y, self.bounds.size.width, self.bounds.size.height/2)];

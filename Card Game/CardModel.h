@@ -97,7 +97,7 @@
 /** Returns the String version of the elements */
 +(NSString*) elementToString:(enum CardElement) element;
 
-/** Creates a card out of a PFObject. */
+/** Creates a card out of a PFObject. WARNING: Can return nil if failed t o fetch */
 +(CardModel*) createCardFromPFObject: (PFObject*)cardPF onFinish:(void (^)(CardModel*))block;
 
 /** Adds a card to the Parse database. Really only used when user creates a new card. WARNING: do not call this on main thread because it blocks while saving */

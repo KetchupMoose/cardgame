@@ -50,6 +50,25 @@
     return self;
 }
 
+-(void)setupAsTab
+{
+    [self setButtonStyle:CFButtonStyleRadio];
+    
+    [_dottedBorder removeFromSuperlayer];
+    _dottedBorder = [CAShapeLayer layer];
+    _dottedBorder.strokeColor = [UIColor blackColor].CGColor;
+    _dottedBorder.fillColor = nil;
+    _dottedBorder.lineWidth = 2;
+    _dottedBorder.lineDashPattern = @[@5, @8];
+    CGRect boundsRect = CGRectMake(self.bounds.origin.x + 5, self.bounds.origin.y + 5, self.bounds.size.width - 10, self.bounds.size.height - 10);
+    _dottedBorder.path = [UIBezierPath bezierPathWithRect:boundsRect].CGPath;
+    _dottedBorder.frame = self.bounds;
+    [self.layer addSublayer:_dottedBorder];
+    self.layer.cornerRadius = 0;
+    self.layer.borderWidth = 2;
+    self.layer.borderColor = [UIColor blackColor].CGColor;
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -104,8 +123,6 @@
             [self setSelected:YES];
         else
             [self setSelected:!originalSelected];
-        
-        NSLog(@"touched up inside");
     }
     
     [self updateView];
@@ -170,7 +187,6 @@
 
 -(void)setEnabled:(BOOL)enabled
 {
-    NSLog(@"button enabled to: %d", enabled);
     [super setEnabled:enabled];
     if (!enabled)
         self.selected = NO;
@@ -180,7 +196,6 @@
 
 -(void)setSelected:(BOOL)selected
 {
-    NSLog(@"button selected to: %d", selected);
     [super setSelected:selected];
     [self updateView];
 }

@@ -20,6 +20,7 @@
         self.layer.shouldRasterize = YES;
         self.layer.rasterizationScale = [UIScreen mainScreen].scale;
         self.backgroundColor = [UIColor clearColor];
+        self.clipsToBounds = YES;
     }
     return self;
 }

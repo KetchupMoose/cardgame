@@ -9,12 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "CardView.h"
 #import "StrokedLabel.h"
+#import "CFLabel.h"
 
 @interface StoreCardCell : UICollectionViewCell
 
 @property (strong) CardView*cardView;
 
 @property (strong) StrokedLabel*costLabel, *likesLabel;
+
+@property (strong) CFLabel*background;
 
 @property (strong) UIImageView*costIcon, *likesIcon;
 

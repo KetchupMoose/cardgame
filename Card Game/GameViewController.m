@@ -101,7 +101,7 @@ BOOL leftHandViewZone = NO;
             
             _isTutorial = _level.isTutorial;
         }
-    
+        
         //inits array
         self.currentAbilities = [NSMutableArray array];
     }
@@ -145,7 +145,7 @@ BOOL leftHandViewZone = NO;
     [self updateHandsView: OPPONENT_SIDE];
     [self updateResourceView: PLAYER_SIDE];
     [self updateResourceView: OPPONENT_SIDE];
-        
+    
     
     self.currentNumberOfAnimations = 0; //init
     
@@ -160,16 +160,16 @@ BOOL leftHandViewZone = NO;
 {
     //for checking fonts
     /*
-    for (NSString* family in [UIFont familyNames])
-    {
-        NSLog(@"%@", family);
-        
-        for (NSString* name in [UIFont fontNamesForFamilyName: family])
-        {
-            NSLog(@"  %@", name);
-        }
-    }
-*/
+     for (NSString* family in [UIFont familyNames])
+     {
+     NSLog(@"%@", family);
+     
+     for (NSString* name in [UIFont fontNamesForFamilyName: family])
+     {
+     NSLog(@"  %@", name);
+     }
+     }
+     */
     
     //set up UI
     darkFilter = [[UIView alloc] initWithFrame:self.view.bounds];
@@ -347,7 +347,7 @@ BOOL leftHandViewZone = NO;
     
     abilityDescriptionView  = [[GameInfoTableView alloc] initWithFrame:CGRectMake(0, 0, 80, SCREEN_HEIGHT*2/5) withTitle:@"Keywords"];
     abilityDescriptionView.center = CGPointMake(SCREEN_WIDTH-45, SCREEN_HEIGHT/2);
-
+    
     //-----ability targetting hint & give up-----//
     pickATargetLabel = [[StrokedLabel alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
     pickATargetLabel.center = CGPointMake(self.view.bounds.size.width/2 + 20, self.view.bounds.size.height-120);
@@ -558,17 +558,17 @@ BOOL leftHandViewZone = NO;
         
         //TODO: remove for debugging
         /*
-        if (!tappedOnACard)
-            for (CardModel*card in self.gameModel.hands[OPPONENT_SIDE])
-            {
-                if (hitView == card.cardView)
-                {
-                    [self zoomFieldCard:card];
-                    tappedOnACard = YES;
-                    break;
-                }
-            }
-        */
+         if (!tappedOnACard)
+         for (CardModel*card in self.gameModel.hands[OPPONENT_SIDE])
+         {
+         if (hitView == card.cardView)
+         {
+         [self zoomFieldCard:card];
+         tappedOnACard = YES;
+         break;
+         }
+         }
+         */
         if (tappedOnACard)
         {
             gameControlState = gameControlStateNone;
@@ -626,7 +626,7 @@ BOOL leftHandViewZone = NO;
     [self.viewingCardView setUserInteractionEnabled:NO];
     
     [self.view addSubview:self.viewingCardView];
-   
+    
     //only add these if there are actually anything to display
     if ([abilityDescriptionView.currentStrings count]>0)
         [self.view addSubview:abilityDescriptionView];
@@ -779,7 +779,7 @@ BOOL leftHandViewZone = NO;
         {
             CardView *cardView = [[CardView alloc] initWithModel:card viewMode:cardViewModeIngame];
             cardView.frontFacing = YES; //TODO ability can change this
-                
+            
             card.cardView = cardView;
             
             cardView.alpha = 0;
@@ -838,46 +838,46 @@ BOOL leftHandViewZone = NO;
     if (currentPoint.y > SCREEN_HEIGHT - CARD_HEIGHT && currentSide == PLAYER_SIDE)
     {
         /*
-        int closestDistanceFromTouch = 999999;
-        CardView*closestCard = nil;
-        
-        NSArray*playerHand = self.gameModel.hands[PLAYER_SIDE];
-        for (int i = 0; i < playerHand.count; i++)
-        {
-            CardModel* cardModel = playerHand[i];
-            CardView*cardView = cardModel.cardView;
-            
-            int distanceFromTouch = abs(cardView.center.x - currentPoint.x);
-            
-            if (distanceFromTouch < closestDistanceFromTouch)
-            {
-                closestDistanceFromTouch = distanceFromTouch;
-                closestCard = cardView;
-            }
-        }
-        
-        if (closestCard!=nil && closestDistanceFromTouch < CARD_WIDTH*2/3)
-        {
-            closestCard.cardViewState = cardViewStateDragging;
-            //cardView.transform = CGAffineTransformScale(CGAffineTransformIdentity, DEFAULT_SCALE, DEFAULT_SCALE);
-            
-            gameControlState = gameControlStateDraggingHandCard;
-            currentCard = closestCard.cardModel;
-            
-            closestCard.center = CGPointMake(closestCard.center.x, (SCREEN_HEIGHT-CARD_FULL_HEIGHT*2/3));
-            
-            //saves the index in the view before bringing it to the front
-            closestCard.previousViewIndex = [self.handsView.subviews indexOfObject:closestCard];
-            [self.handsView bringSubviewToFront:closestCard];
-            
-            //cardView.center = [touch locationInView: self.handsView];
-            //CGPoint newCenter = [touch locationInView: self.view];
-            //newCenter.y -= cardView.frame.size.height*2/3;
-            
-            //cardView.center = newCenter;
-            
-            return; //TODO this is assuming nothing will be done after this
-        }*/
+         int closestDistanceFromTouch = 999999;
+         CardView*closestCard = nil;
+         
+         NSArray*playerHand = self.gameModel.hands[PLAYER_SIDE];
+         for (int i = 0; i < playerHand.count; i++)
+         {
+         CardModel* cardModel = playerHand[i];
+         CardView*cardView = cardModel.cardView;
+         
+         int distanceFromTouch = abs(cardView.center.x - currentPoint.x);
+         
+         if (distanceFromTouch < closestDistanceFromTouch)
+         {
+         closestDistanceFromTouch = distanceFromTouch;
+         closestCard = cardView;
+         }
+         }
+         
+         if (closestCard!=nil && closestDistanceFromTouch < CARD_WIDTH*2/3)
+         {
+         closestCard.cardViewState = cardViewStateDragging;
+         //cardView.transform = CGAffineTransformScale(CGAffineTransformIdentity, DEFAULT_SCALE, DEFAULT_SCALE);
+         
+         gameControlState = gameControlStateDraggingHandCard;
+         currentCard = closestCard.cardModel;
+         
+         closestCard.center = CGPointMake(closestCard.center.x, (SCREEN_HEIGHT-CARD_FULL_HEIGHT*2/3));
+         
+         //saves the index in the view before bringing it to the front
+         closestCard.previousViewIndex = [self.handsView.subviews indexOfObject:closestCard];
+         [self.handsView bringSubviewToFront:closestCard];
+         
+         //cardView.center = [touch locationInView: self.handsView];
+         //CGPoint newCenter = [touch locationInView: self.view];
+         //newCenter.y -= cardView.frame.size.height*2/3;
+         
+         //cardView.center = newCenter;
+         
+         return; //TODO this is assuming nothing will be done after this
+         }*/
         
         gameControlState = gameControlStateDraggingHandCard;
         [self touchesMoved:touches withEvent:event];
@@ -1275,7 +1275,7 @@ BOOL leftHandViewZone = NO;
         [self performBlock:^{
             [self animateCardDamage:card.cardView forDamage:[damages[1] integerValue] fromSide:side];
         } afterDelay:0.4];
-
+    
     //update views after the attack
     [card.cardView updateView];
     [targetCard.cardView updateView];
@@ -1290,9 +1290,9 @@ BOOL leftHandViewZone = NO;
     }
     
     /*
-    [self performBlock:^{
-        [self updateBattlefieldView:currentSide];
-    }  afterDelay:2];
+     [self performBlock:^{
+     [self updateBattlefieldView:currentSide];
+     }  afterDelay:2];
      */
 }
 
@@ -1511,7 +1511,7 @@ BOOL leftHandViewZone = NO;
     
     _resultsLabel.center = CGPointMake(_resultsLabel.center.x + SCREEN_WIDTH, _resultsLabel.center.y);
     _rewardsLabel.center = CGPointMake(_rewardsLabel.center.x + SCREEN_WIDTH, _rewardsLabel.center.y);
-
+    
     [_gameOverScreen addSubview:_rewardsLabel];
     _gameOverScreen.alpha = 0;
     [self.view addSubview:_gameOverScreen];
@@ -1669,8 +1669,8 @@ BOOL leftHandViewZone = NO;
     UIViewController*vc = self.presentingViewController.presentingViewController;
     
     [vc dismissViewControllerAnimated:NO completion:^{
-         [vc presentViewController:bbsvc animated:NO completion:nil];
-     }];
+        [vc presentViewController:bbsvc animated:NO completion:nil];
+    }];
 }
 
 -(void)saveLevelProgress
@@ -1689,6 +1689,24 @@ BOOL leftHandViewZone = NO;
         //[_gameOverSaveLabel sizeToFit];
         [_gameOverScreen addSubview:_gameOverSaveLabel];
         
+        /*
+         int goldReward = 0;
+         int cardReward = 0;
+         
+         if (_level != nil)
+         {
+         goldReward = _level.goldReward;
+         cardReward = _level.cardReward;
+         }
+         //dont need to store the level rewards on there. also let server add the completed level
+         userPF[@"gold"] = @([userPF[@"gold"] intValue] + goldReward);
+         userPF[@"blankCards"] = @([userPF[@"blankCards"] intValue] + cardReward);
+         [completedLevels addObject:_level.levelID];
+         userPF[@"completedLevels"] = completedLevels;
+         
+         [self updateUserModel];
+         */
+        
         int goldReward = 0;
         int cardReward = 0;
         
@@ -1697,13 +1715,35 @@ BOOL leftHandViewZone = NO;
             goldReward = _level.goldReward;
             cardReward = _level.cardReward;
         }
-        //TODO cloud
-        userPF[@"gold"] = @([userPF[@"gold"] intValue] + goldReward);
-        userPF[@"blankCards"] = @([userPF[@"blankCards"] intValue] + cardReward);
-        [completedLevels addObject:_level.levelID];
-        userPF[@"completedLevels"] = completedLevels;
         
-        [self updateUserModel];
+        [self performBlockInBackground:^{
+            NSError* error;
+            [PFCloud callFunction:@"levelComplete" withParameters:@{
+                                                                    @"levelID" : _level.levelID,
+                                                                    @"gold" : @(goldReward),
+                                                                    @"blankCards" : @(cardReward)
+                                                                    } error:&error];
+            if (!error){
+                [userPF fetch];
+                
+                NSLog(@"Progress saved");
+                [self quitConfirmButtonPressed];
+            }
+            else{
+                dispatch_sync(dispatch_get_main_queue(), ^(void) {
+                    NSLog(@"ERROR: FAILED TO SAVE LEVEL PROGRESS!!!");
+                    
+                    [_gameOverProgressIndicator stopAnimating];
+                    
+                    _gameOverSaveLabel.frame = CGRectMake(40, SCREEN_HEIGHT/2, SCREEN_WIDTH-80, SCREEN_HEIGHT/3);
+                    _gameOverSaveLabel.text = @"Failed to save progress. Please check your internet connection and try again. If you quit now, your progress will not be saved.";
+                    [_gameOverSaveLabel sizeToFit];
+                    
+                    [_gameOverScreen addSubview:_gameOverRetryButton];
+                    [_gameOverScreen addSubview:_gameOverNoRetryButton];
+                });
+            }
+        }];
     }
     else{
         //not supposed to happen, but here anyways
@@ -1713,32 +1753,7 @@ BOOL leftHandViewZone = NO;
 
 -(void)updateUserModel
 {
-    [self performBlockInBackground:^{
-        
-        NSError *error;
-        [userPF save:&error];
-        
-        if (!error)
-        {
-            NSLog(@"Progress saved");
-            [self quitConfirmButtonPressed];
-        }
-        else
-        {
-            dispatch_sync(dispatch_get_main_queue(), ^(void) {
-                NSLog(@"ERROR: FAILED TO SAVE LEVEL PROGRESS!!!");
-                
-                [_gameOverProgressIndicator stopAnimating];
-                
-                _gameOverSaveLabel.frame = CGRectMake(40, SCREEN_HEIGHT/2, SCREEN_WIDTH-80, SCREEN_HEIGHT/3);
-                _gameOverSaveLabel.text = @"Failed to save progress. Please check your internet connection and try again. If you quit now, your progress will not be saved.";
-                [_gameOverSaveLabel sizeToFit];
-                
-                [_gameOverScreen addSubview:_gameOverRetryButton];
-                [_gameOverScreen addSubview:_gameOverNoRetryButton];
-            });
-        }
-    }];
+    
 }
 
 -(void)gameOverRetryButtonPressed
@@ -1749,8 +1764,7 @@ BOOL leftHandViewZone = NO;
     [_gameOverRetryButton removeFromSuperview];
     [_gameOverNoRetryButton removeFromSuperview];
     //[_gameOverSaveLabel sizeToFit];
-    
-    [self updateUserModel];
+    [self saveLevelProgress];
 }
 
 -(void)gameOverNoRetryButtonPressed
@@ -1809,7 +1823,7 @@ BOOL leftHandViewZone = NO;
 -(void)unmodalScreen
 {
     [darkFilter removeFromSuperview];
- 
+    
     [self.handsView setUserInteractionEnabled:YES];
     //[self.uiView setUserInteractionEnabled:YES];
     [self.backgroundView setUserInteractionEnabled:YES];

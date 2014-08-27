@@ -264,9 +264,17 @@ const int NO_ID = -1, PLAYER_FIRST_CARD_ID = 0;
     //NOTE: make sure abilities are always loaded after stats otherwise maxLife etc may be modified by ability
     for (PFObject *abilityPF in abilities)
     {
-        [abilityPF fetch];
-        if (abilityPF != nil)
-            [card addBaseAbility:[AbilityWrapper getAbilityWithPFObject:abilityPF]];
+        int retryCount = 0;
+        NSError*error;
+        do{
+            [abilityPF fetch:&error];
+            if (abilityPF != nil)
+                [card addBaseAbility:[AbilityWrapper getAbilityWithPFObject:abilityPF]];
+            retryCount++;
+            
+            if (retryCount>5) //failed to get ability, returns nil
+                return nil;
+        } while(error);
     }
     
     card.name = name;
@@ -287,7 +295,7 @@ const int NO_ID = -1, PLAYER_FIRST_CARD_ID = 0;
 {
     PFObject *cardImage = [PFObject objectWithClassName:@"CardImage"];
     NSData *imageData = UIImagePNGRepresentation(image);
-    PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"%d.png", card.idNumber] data:imageData];
+    PFFile *imageFile = [PFFile fileWithData:imageData];
     cardImage[@"image"] = imageFile;
     
     NSError*imageSaveEror = nil;
@@ -309,7 +317,10 @@ const int NO_ID = -1, PLAYER_FIRST_CARD_ID = 0;
     [cardPF save:&cardSaveEror];
     
     if (cardSaveEror)
+    {
+        [cardImage deleteEventually]; //attempt to delete the image that got uploaded
         return cardSaveEror;
+    }
     
     card.cardPF = cardPF;
     

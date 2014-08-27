@@ -548,7 +548,10 @@ NSDictionary *singlePlayerCardImages;
                                               _transformView.transform = originalTransform;
                                           }
                                           completion:^(BOOL finished) {
-                                              self.baseAbilityLabel.alpha = 1;
+                                              if (self.frontFacing)
+                                                  self.baseAbilityLabel.alpha = 1;
+                                              else
+                                                  self.baseAbilityLabel.alpha = 0;
                                           }];
                      }];
 }

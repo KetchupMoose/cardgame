@@ -27,6 +27,7 @@ const int INITIAL_DECK_LIMIT = 3;
     [UserModel updateUser:^(void)
      {
          //set initials values here
+         //#CLOUD but kinda lazy
          if (userPF[@"decks"] == nil)
              userPF[@"decks"] = @[];
          if (userPF[@"gold"] == nil)
@@ -139,7 +140,14 @@ const int INITIAL_DECK_LIMIT = 3;
                 {
                     //add card
                     [self performBlockInBackground:^{
-                        [userAllCards addObject:[CardModel createCardFromPFObject:objects[0] onFinish:nil]];
+                        CardModel*cardModel = [CardModel createCardFromPFObject:objects[0] onFinish:nil];
+                        if (cardModel == nil)
+                        {
+                             NSLog(@"ERROR: Create card from parse returned nil in UserModel");
+                            //TODO might have to show error to restart game
+                        }
+                        else
+                            [userAllCards addObject:cardModel];
                         loadingCards--;
                     }];
                 }
@@ -156,6 +164,7 @@ const int INITIAL_DECK_LIMIT = 3;
             }
         }
         
+        //wait until cards are all loaded
         while(loadingCards != 0)
             sleep(0.1);
         
@@ -576,17 +585,36 @@ const int INITIAL_DECK_LIMIT = 3;
 //maybe not put it here?
 +(BOOL)publishCard:(CardModel*)card withImage:(UIImage*)image
 {
+    //#REMOVE
+    /*
     NSNumber *idNumber = [PFCloud callFunction:@"getNewCardID" withParameters:@{}];
     if (idNumber == nil)
-        return NO;
-    card.idNumber = [idNumber intValue];
+        return NO;*/
+    card.idNumber = NO_ID; //card has no id at this point
     
     //upload card to parse
     NSError *error = [CardModel addCardToParse:card withImage:image];
     if (error)
         return NO;
     
-    //create a sale
+    [PFCloud callFunction:@"publishCard" withParameters:@{
+                                                      @"cardID" : card.cardPF.objectId,
+                                                      } error:&error];
+    
+    if (!error)
+    {
+        [userPF fetch];
+        [card.cardPF fetch];
+        card.idNumber = [card.cardPF[@"idNumber"] intValue];
+    }
+    else
+    {
+        //attempt to delete the card
+        [card.cardPF delete];
+        card.cardPF = nil;
+    }
+    
+    /*
     PFObject *sale = [PFObject objectWithClassName:@"Sale"];
     sale[@"cardID"] = idNumber;
     sale[@"likes"] = @0;
@@ -607,6 +635,7 @@ const int INITIAL_DECK_LIMIT = 3;
     
     if (!succ)
         return NO;
+     */
     //[userPF save];
     
     //[self saveCard:card];

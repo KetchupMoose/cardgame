@@ -11,6 +11,7 @@
 #import "DeckModel.h"
 #import "DeckCell.h"
 #import "DeckCardCell.h"
+#import "CFLabel.h"
 
 @implementation DeckTableView
 
@@ -33,9 +34,12 @@ const double DECK_EDITOR_CARD_SCALE = 0.6;
         _tableView.separatorColor = [UIColor clearColor];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
+        CFLabel*background = [[CFLabel alloc] initWithFrame:self.bounds];
+        [background setBackgroundColor:COLOUR_INTERFACE_BLUE];
+        [_tableView setBackgroundView:background];
+        
         [_tableView registerClass:[DeckCardCell class] forCellReuseIdentifier:@"deckTableCardCell"];
         [_tableView registerClass:[DeckCell class] forCellReuseIdentifier:@"deckTableDeckCell"];
-        [_tableView setBackgroundColor:COLOUR_INTERFACE_BLUE];
         _tableView.rowHeight = 40;
         
         [_tableView setDataSource:self];

@@ -268,10 +268,10 @@ NSArray *allAbilities;
                       [[Ability alloc] initWithType:abilityLoseLife castType:castOnSummon targetType:targetOneEnemyMinion withDuration:durationInstant withValue:0 withOtherValues:@[@1000,@10000] withDescription:nil] elements:@[DEFENSIVE_ELEMENTS] rarity:cardRarityCommon minPoints:1000 maxPoints:10000 maxCount:1 minCost:1],
                      //direct damage all enemy
                      [[AbilityWrapper alloc] initWithAbility:
-                      [[Ability alloc] initWithType:abilityLoseLife castType:castOnSummon targetType:targetAllEnemy withDuration:durationInstant withValue:0 withOtherValues:@[@1000,@4000] withDescription:nil] elements:@[FIRE_AND_ICE] rarity:cardRarityCommon minPoints:2500 maxPoints:8500 maxCount:2 minCost:1],
+                      [[Ability alloc] initWithType:abilityLoseLife castType:castOnSummon targetType:targetAllEnemy withDuration:durationInstant withValue:0 withOtherValues:@[@1000,@4000] withDescription:nil] elements:@[FIRE_AND_ICE] rarity:cardRarityCommon minPoints:2250 maxPoints:8250 maxCount:2 minCost:1],
                      //direct damage all enemy minions
                      [[AbilityWrapper alloc] initWithAbility:
-                      [[Ability alloc] initWithType:abilityLoseLife castType:castOnSummon targetType:targetAllEnemyMinions withDuration:durationInstant withValue:0 withOtherValues:@[@1000,@5000] withDescription:nil] elements:@[ELEMENT_NEUTRAL, LIGHTNING_AND_EARTH, LIGHT_AND_DARK] rarity:cardRarityCommon minPoints:2100 maxPoints:10000 maxCount:1 minCost:2],
+                      [[Ability alloc] initWithType:abilityLoseLife castType:castOnSummon targetType:targetAllEnemyMinions withDuration:durationInstant withValue:0 withOtherValues:@[@1000,@5000] withDescription:nil] elements:@[ELEMENT_NEUTRAL, LIGHTNING_AND_EARTH, LIGHT_AND_DARK] rarity:cardRarityCommon minPoints:2000 maxPoints:10000 maxCount:1 minCost:2],
                      //direct damage all characters
                      [[AbilityWrapper alloc] initWithAbility:
                       [[Ability alloc] initWithType:abilityLoseLife castType:castOnSummon targetType:targetAll withDuration:durationInstant withValue:0 withOtherValues:@[@1000,@6000] withDescription:nil] elements:@[ELEMENT_FIRE] rarity:cardRarityCommon minPoints:1500 maxPoints:9000 maxCount:2 minCost:1],

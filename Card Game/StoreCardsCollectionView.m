@@ -16,12 +16,25 @@
 @synthesize currentCards = _currentCards;
 @synthesize collectionView = _collectionView;
 
-const float STORE_CARD_SCALE = 1.1f;
+int STORE_CARD_WIDTH, STORE_CARD_HEIGHT;
+int STORE_CELL_WIDTH, STORE_CELL_HEIGHT;
+
+/** Depends on device. Iphone = 2 */
+int numberOfColumns;
+
+const int CARD_CELL_INSET = 8;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
+        numberOfColumns = 2; //TODO different for ipad
+        STORE_CELL_WIDTH = self.bounds.size.width/numberOfColumns - 2; //a little border
+        STORE_CELL_HEIGHT = STORE_CELL_WIDTH * CARD_HEIGHT_RATIO/CARD_WIDTH_RATIO + 50; //TODO the 50 should also scale
+        
+        STORE_CARD_WIDTH = STORE_CELL_WIDTH-CARD_CELL_INSET;
+        STORE_CARD_HEIGHT = STORE_CARD_WIDTH * CARD_HEIGHT_RATIO / CARD_WIDTH_RATIO;
+        
         _currentCards = [NSMutableArray array];
         _loadingCells = [NSMutableArray array];
         
@@ -38,6 +51,8 @@ const float STORE_CARD_SCALE = 1.1f;
         [self setUserInteractionEnabled:YES];
         
         [self addSubview:self.collectionView];
+        
+        
     }
     return self;
 }
@@ -75,12 +90,13 @@ const float STORE_CARD_SCALE = 1.1f;
             //CardModel*card = self.currentCards[indexPath.row];
             PFObject*cardPF = self.currentCardsPF[indexPath.row];
             
-            cell.cardView = [[CardView alloc] initWithModel:card viewMode:cardViewStateMaximize viewState:card.cardViewState];
+            cell.cardView = [[CardView alloc] initWithModel:card viewMode:cardViewModeEditor viewState:card.cardViewState];
             cell.cardView.frontFacing = YES;
             cell.cardView.cardHighlightType = cardHighlightNone;
-            cell.cardView.transform = CGAffineTransformScale(CGAffineTransformIdentity, STORE_CARD_SCALE, STORE_CARD_SCALE);
+            cell.cardView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
             cell.cardView.center = cell.center;
-            cell.cardView.frame = CGRectMake(0,0,CARD_FULL_WIDTH*STORE_CARD_SCALE,CARD_FULL_HEIGHT*STORE_CARD_SCALE + 50);
+            
+            cell.cardView.frame = CGRectMake(CARD_CELL_INSET,CARD_CELL_INSET,STORE_CARD_WIDTH,STORE_CARD_HEIGHT);
             cell.costLabel.text = [NSString stringWithFormat:@"%d", [GameStore getCardCost:card]];
             cell.likesLabel.text = [NSString stringWithFormat:@"%d", [cardPF[@"likes"] intValue]];
             
@@ -145,7 +161,7 @@ const float STORE_CARD_SCALE = 1.1f;
         self.currentCardsPF[i] = cardPF;
         
         //TODO this is still not exactly correct, as when a tab/filter is hit, all these cells progresses should be destroyed
-        [CardModel createCardFromPFObject:cardPF onFinish:^(CardModel*cardModel){
+        CardModel *cardModel = [CardModel createCardFromPFObject:cardPF onFinish:^(CardModel*cardModel){
             dispatch_sync(dispatch_get_main_queue(), ^(void) {
                 //if query ID has been updated (i.e. new query sent), then this query is out of date and should be removed
                 //NSLog(@"original id: %d currentID %d for path:%d", queryID, cardStoreQueryID, indexPath.row);
@@ -162,12 +178,12 @@ const float STORE_CARD_SCALE = 1.1f;
                 
                 self.currentCards[i] = cardModel;
                 StoreCardCell *cell = (StoreCardCell *)[_collectionView cellForItemAtIndexPath:indexPath];
-                cell.cardView = [[CardView alloc] initWithModel:cardModel viewMode:cardViewStateMaximize viewState:cardModel.cardViewState];
+                cell.cardView = [[CardView alloc] initWithModel:cardModel viewMode:cardViewModeEditor viewState:cardModel.cardViewState];
                 cell.cardView.frontFacing = YES;
                 cell.cardView.cardHighlightType = cardHighlightNone;
-                cell.cardView.transform = CGAffineTransformScale(CGAffineTransformIdentity, STORE_CARD_SCALE, STORE_CARD_SCALE);
+                cell.cardView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
                 cell.cardView.center = cell.center;
-                cell.cardView.frame = CGRectMake(0,0,CARD_FULL_WIDTH*STORE_CARD_SCALE,CARD_FULL_HEIGHT*STORE_CARD_SCALE + 50);
+                cell.cardView.frame = CGRectMake(CARD_CELL_INSET,CARD_CELL_INSET,STORE_CARD_WIDTH, STORE_CARD_HEIGHT);
                 cell.costLabel.text = [NSString stringWithFormat:@"%d", [GameStore getCardCost:cardModel]];
                 cell.likesLabel.text = [NSString stringWithFormat:@"%d", [cardPF[@"likes"] intValue]];
                 
@@ -182,6 +198,9 @@ const float STORE_CARD_SCALE = 1.1f;
                 [_loadingCells removeObject:indexPath];
             });
         }];
+        
+        if (cardModel == nil)
+            NSLog(@"ERROR: Create card from parse returned nil in StoreCardsCollectionView");
         //}];
         
     } onFinish:nil];
@@ -211,7 +230,9 @@ const float STORE_CARD_SCALE = 1.1f;
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(CARD_FULL_WIDTH*STORE_CARD_SCALE,CARD_FULL_HEIGHT*STORE_CARD_SCALE + 50);
+    //return CGSizeMake(CARD_FULL_WIDTH*STORE_CARD_SCALE,CARD_FULL_HEIGHT*STORE_CARD_SCALE + 50);
+    
+    return CGSizeMake(STORE_CELL_WIDTH, STORE_CELL_HEIGHT);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
@@ -219,7 +240,7 @@ const float STORE_CARD_SCALE = 1.1f;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 0.0;
+    return 4.0;
 }
 
 - (UIEdgeInsets)collectionView:

@@ -16,6 +16,7 @@
 -(void)setTextSize:(int)size;
 -(void)setEnabled:(BOOL)enabled;
 -(void)setSelected:(BOOL)selected;
+-(void)setupAsTab;
 
 @property enum CFButtonStyle buttonStyle;
 @property (strong) CAShapeLayer * dottedBorder;

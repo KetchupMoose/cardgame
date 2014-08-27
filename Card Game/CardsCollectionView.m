@@ -9,6 +9,7 @@
 #import "CardsCollectionView.h"
 #import "CardView.h"
 #import "DeckEditorViewController.h"
+#import "CFLabel.h"
 
 @implementation CardsCollectionView
 
@@ -25,10 +26,14 @@
     if (self) {
         self.collectionView = [[CustomCollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];
         
+        
         self.currentCardModels = [NSMutableArray array];
         
         [self.collectionView registerClass:[CardsCollectionCell class] forCellWithReuseIdentifier:@"cardsCollectionCell"];
-        [self.collectionView setBackgroundColor:[UIColor clearColor]];
+        
+        //CFLabel*background = [[CFLabel alloc] initWithFrame:self.bounds];
+        //[_collectionView setBackgroundView:background];
+        [_collectionView setBackgroundColor:COLOUR_INTERFACE_BLUE_LIGHT];
         
         [self.collectionView setDataSource:self];
         [self.collectionView setDelegate:self];

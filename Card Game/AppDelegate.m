@@ -20,6 +20,8 @@
 NSString*SERVICE_NAME = @"com.contentgames.cardgame";
 NSString*ACCOUNT_NAME = @"default_account";
 
+const BOOL OFFLINE_DEBUGGING = NO;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [Parse setApplicationId:@"yekARh373R6T7z42RzFD8R1ywZVYELpOS1gCVD5C"
@@ -32,76 +34,80 @@ NSString*ACCOUNT_NAME = @"default_account";
     
     userCDContext = [self managedObjectContext];
     
-    //TODO should be in main screen
-    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    
-    NSError*error;
-    NSString *password = [SSKeychain passwordForService:SERVICE_NAME account:ACCOUNT_NAME error:&error];
-    
-    //new account
-    if (error || password == nil)
+    if (OFFLINE_DEBUGGING)
+        userInfoLoaded = YES;
+    else
     {
-        NSString *idfv = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-        NSError*error;
-        [SSKeychain setPassword:idfv forService:SERVICE_NAME account:ACCOUNT_NAME error:&error];
+        //TODO should be in main screen
+        [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
         
-        if (error)
+        NSError*error;
+        NSString *password = [SSKeychain passwordForService:SERVICE_NAME account:ACCOUNT_NAME error:&error];
+        
+        //new account
+        if (error || password == nil)
         {
-            NSLog(@"%@", [error localizedDescription]);
-            //TODO handle this
+            NSString *idfv = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+            NSError*error;
+            [SSKeychain setPassword:idfv forService:SERVICE_NAME account:ACCOUNT_NAME error:&error];
+            
+            if (error)
+            {
+                NSLog(@"%@", [error localizedDescription]);
+                //TODO handle this
+            }
+            else
+            {
+                NSLog(@"creation success: %@", idfv);
+                password = idfv;
+            }
         }
-        else
-        {
-            NSLog(@"creation success: %@", idfv);
-            password = idfv;
+        //already have account
+        else{
+            NSLog(@"already have account: %@", password);
         }
-    }
-    //already have account
-    else{
-        NSLog(@"already have account: %@", password);
-    }
-    
-    NSString *username = [password substringToIndex:7];
-    
-    //TODO, username is that for now
-    [PFUser logInWithUsernameInBackground:username password:password
-                                    block:^(PFUser *user, NSError *error) {
-                                        if (user) {
-                                            [UserModel setupUser];
-                                        } else {
-                                            if(error)
-                                            {
-                                                NSLog(@"%d", [error code]);
-                                                //no username, register one
-                                                if ([error code] == 101) //101 is invalid login credentials
+        
+        NSString *username = [password substringToIndex:7];
+        
+        //TODO, username is that for now
+        [PFUser logInWithUsernameInBackground:username password:password
+                                        block:^(PFUser *user, NSError *error) {
+                                            if (user) {
+                                                [UserModel setupUser];
+                                            } else {
+                                                if(error)
                                                 {
-                                                    userPF = [PFUser user];
-                                                    userPF.username = username;
-                                                    userPF.password = password;
-                                                    NSError*error;
-                                                    [userPF signUp:&error];
-                                                    
-                                                    if (error)
+                                                    NSLog(@"%d", [error code]);
+                                                    //no username, register one
+                                                    if ([error code] == 101) //101 is invalid login credentials
                                                     {
+                                                        userPF = [PFUser user];
+                                                        userPF.username = username;
+                                                        userPF.password = password;
+                                                        NSError*error;
+                                                        [userPF signUp:&error];
+                                                        
+                                                        if (error)
+                                                        {
+                                                            NSLog(@"%@", [error localizedDescription]);
+                                                        }
+                                                        else
+                                                        {
+                                                            NSLog(@"signup succecss");
+                                                            [UserModel setupUser];
+                                                        }
+                                                    }
+                                                    else{
                                                         NSLog(@"%@", [error localizedDescription]);
                                                     }
-                                                    else
-                                                    {
-                                                        NSLog(@"signup succecss");
-                                                        [UserModel setupUser];
-                                                    }
                                                 }
-                                                else{
-                                                    NSLog(@"%@", [error localizedDescription]);
+                                                else
+                                                {
+                                                    NSLog(@"no error but no user. not suppose to happen");
                                                 }
                                             }
-                                            else
-                                            {
-                                                NSLog(@"no error but no user. not suppose to happen");
-                                            }
-                                        }
-                                    }];
-    
+                                        }];
+    }
     //[PFUser enableAutomaticUser];
     
     /*
@@ -155,7 +161,7 @@ NSString*ACCOUNT_NAME = @"default_account";
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"CardGameCoreData" withExtension:@"momd"]; //TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"CardGame" withExtension:@"momd"]; //TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }

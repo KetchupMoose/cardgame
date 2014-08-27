@@ -110,7 +110,7 @@ DeckModel * allCards;
     //set up cards view
     UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
     [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-    self.cardsView = [[CardsCollectionView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-366-40, SCREEN_WIDTH-90, 366) collectionViewLayout:layout];
+    self.cardsView = [[CardsCollectionView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-366-42, SCREEN_WIDTH-88, 366) collectionViewLayout:layout];
     self.cardsView.parentViewController = self; //for callbacks
     self.cardsView.backgroundColor = COLOUR_INTERFACE_BLUE_TRANSPARENT;
     
@@ -122,14 +122,18 @@ DeckModel * allCards;
     [self.cardsView setUserInteractionEnabled:YES];
     
     //set up deck view
-    self.deckView = [[DeckTableView alloc] initWithFrame:CGRectMake(230,0,90,SCREEN_HEIGHT-40)];
+    self.deckView = [[DeckTableView alloc] initWithFrame:CGRectMake(230,0,90,SCREEN_HEIGHT-42)];
     
     [self.view addSubview:self.deckView];
     [self.deckView setUserInteractionEnabled:YES];
     
-    _footerView = [[UIView alloc]initWithFrame:CGRectMake(0,SCREEN_HEIGHT-40,SCREEN_WIDTH, 40)];
-    _footerView.backgroundColor = [UIColor whiteColor];
+    _footerView = [[UIView alloc]initWithFrame:CGRectMake(0,SCREEN_HEIGHT-44,SCREEN_WIDTH, 44)];
+    //_footerView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_footerView];
+    
+    CFLabel*footerBackground = [[CFLabel alloc] initWithFrame:CGRectMake(-8, 0, _footerView.frame.size.width+16, _footerView.frame.size.height+8)];
+    [footerBackground setBackgroundColor:COLOUR_INTERFACE_BLUE_DARK];
+    [_footerView addSubview:footerBackground];
     
     //set up UI
     darkFilter = [[UILabel alloc] initWithFrame:self.view.bounds];
@@ -148,7 +152,7 @@ DeckModel * allCards;
     [removeCardFromDeckButton addTarget:self action:@selector(removeCardFromDeckPressed)    forControlEvents:UIControlEventTouchUpInside];
     
     //deck count label
-    deckCountLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 115, 4, 90, 40)];
+    deckCountLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 115, 8, 90, 40)];
     deckCountLabel.textAlignment = NSTextAlignmentCenter;
     deckCountLabel.textColor = [UIColor blackColor];
     deckCountLabel.backgroundColor = [UIColor clearColor];
@@ -174,18 +178,18 @@ DeckModel * allCards;
     [addDeckButton setImage:[UIImage imageNamed:@"add_deck_button"] forState:UIControlStateNormal];
     [addDeckButton addTarget:self action:@selector(addDeckButtonPressed)    forControlEvents:UIControlEventTouchUpInside];
     
-    backButton = [[CFButton alloc] initWithFrame:CGRectMake(4, 4, 46, 32)];
+    backButton = [[CFButton alloc] initWithFrame:CGRectMake(4, 8, 46, 32)];
     [backButton setImage:[UIImage imageNamed:@"back_button"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backButtonPressed)    forControlEvents:UIControlEventTouchUpInside];
     
-    self.deleteDeckButton = [[CFButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-50, 4, 46, 32)];
+    self.deleteDeckButton = [[CFButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-50, 8, 46, 32)];
     [self.deleteDeckButton setImage:[UIImage imageNamed:@"remove_deck_button"] forState:UIControlStateNormal];
     [self.deleteDeckButton addTarget:self action:@selector(deleteButtonPressed)    forControlEvents:UIControlEventTouchUpInside];
     
     autoAddView = [[UIView alloc] initWithFrame:self.view.bounds];
     
     //---------------------filter view----------------------//
-    _filterToggleButton = [[CFButton alloc] initWithFrame:CGRectMake(4 + 50, 4, 46, 32)];
+    _filterToggleButton = [[CFButton alloc] initWithFrame:CGRectMake(4 + 50, 8, 46, 32)];
     _filterToggleButton.label.text = @"Filter";
     [_filterToggleButton setTextSize:10];
     [_filterToggleButton addTarget:self action:@selector(filterToggleButtonPressed) forControlEvents:UIControlEventTouchUpInside];
@@ -281,7 +285,7 @@ DeckModel * allCards;
     _searchResult.center = CGPointMake(_cardsView.bounds.size.width/2, _cardsView.bounds.size.height/2);
     [_cardsView addSubview:_searchResult];
     
-    invalidDeckButton = [[CFButton alloc] initWithFrame:CGRectMake(104,SCREEN_HEIGHT-36,58, 32)];
+    invalidDeckButton = [[CFButton alloc] initWithFrame:CGRectMake(104,8,58, 32)];
     invalidDeckButton.buttonStyle = CFButtonStyleWarning;
     invalidDeckButton.label.text = @"Problems";
     [invalidDeckButton setTextSize:9];
@@ -330,9 +334,16 @@ DeckModel * allCards;
     _propertiesView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-_deckView.frame.size.width, _cardsView.frame.origin.y)];
     //_propertiesView.backgroundColor = [UIColor redColor];
     
-    _tagsPopularButton = [[CFButton alloc] initWithFrame:CGRectMake(_propertiesView.frame.size.width - 52, _propertiesView.frame.size.height - 36, 50, 32)];
+    CFLabel*propertiesBackground = [[CFLabel alloc] initWithFrame:CGRectMake(_propertiesView.frame.origin.x, _propertiesView.frame.origin.y - 8, _propertiesView.frame.size.width+2, _propertiesView.frame.size.height + 8)];
+    [propertiesBackground setBackgroundColor:COLOUR_INTERFACE_BLUE_DARK];
+    [self.view addSubview:propertiesBackground];
+    
+    _tagsPopularButton = [[CFButton alloc] initWithFrame:CGRectMake(_propertiesView.frame.size.width - 52 - 4, _propertiesView.frame.size.height - 36, 50, 28)];
+    
     if (SCREEN_HEIGHT >= 568)
-        _tagsPopularButton = [[CFButton alloc] initWithFrame:CGRectMake(2, _propertiesView.frame.size.height - 36, 50, 32)];
+    {
+        _tagsPopularButton = [[CFButton alloc] initWithFrame:CGRectMake(8, _propertiesView.frame.size.height - 40, 50, 32)];
+    }
     _tagsPopularButton.label.text = @"Suggest";
     [_tagsPopularButton setTextSize:9];
     
@@ -340,14 +351,14 @@ DeckModel * allCards;
 
     [_propertiesView addSubview:_tagsPopularButton];
     
-    UILabel*deckNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 45, 25)];
+    UILabel*deckNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(9, 5, 45, 25)];
     deckNameLabel.textColor = [UIColor blackColor];
     deckNameLabel.font = [UIFont fontWithName:cardMainFont size:16];
     deckNameLabel.textAlignment = NSTextAlignmentRight;
     deckNameLabel.text = @"Name:";
     [_propertiesView addSubview:deckNameLabel];
     
-    _nameField =  [[UITextField alloc] initWithFrame:CGRectMake(55,4,_propertiesView.frame.size.width - 55 - 4,30)];
+    _nameField =  [[UITextField alloc] initWithFrame:CGRectMake(59,4,_propertiesView.frame.size.width - 55 - 12,30)];
     _nameField.textColor = [UIColor blackColor];
     _nameField.font = [UIFont fontWithName:cardMainFont size:16];
     _nameField.returnKeyType = UIReturnKeyDone;
@@ -359,19 +370,20 @@ DeckModel * allCards;
     [_nameField.layer setBorderColor:[UIColor blackColor].CGColor];
     [_nameField.layer setBorderWidth:2];
     _nameField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
-    _nameField.layer.cornerRadius = 4.0;
+    [_nameField setBackgroundColor:COLOUR_INTERFACE_BLUE_LIGHT];
     
     [_propertiesView addSubview:_nameField];
     
-    UILabel*deckTagsLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 40, 45, 25)];
+    UILabel*deckTagsLabel = [[UILabel alloc] initWithFrame:CGRectMake(9, 40, 45, 25)];
     deckTagsLabel.textColor = [UIColor blackColor];
     deckTagsLabel.font = [UIFont fontWithName:cardMainFont size:16];
     deckTagsLabel.textAlignment = NSTextAlignmentRight;
     deckTagsLabel.text = @"Tags:";
     [_propertiesView addSubview:deckTagsLabel];
     
-    _tagsArea = [[UITextView alloc] initWithFrame:CGRectMake(55, 38, _propertiesView.frame.size.width - 105 - 5, _propertiesView.frame.size.height - 38 - 4)];
+    _tagsArea = [[UITextView alloc] initWithFrame:CGRectMake(59, 38, _propertiesView.frame.size.width - 105 - 12, _propertiesView.frame.size.height - 38 - 8)];
     _tagsArea.textColor = [UIColor blackColor];
+    [_tagsArea setBackgroundColor:COLOUR_INTERFACE_BLUE_LIGHT];
     _tagsArea.font = [UIFont fontWithName:cardMainFont size:16];
     [_tagsArea setAutocorrectionType:UITextAutocorrectionTypeNo];
     //[_nameField addTarget:self action:@selector(searchFieldBegan) forControlEvents:UIControlEventEditingDidBegin];
@@ -380,10 +392,10 @@ DeckModel * allCards;
     [_tagsArea.layer setBorderColor:[UIColor blackColor].CGColor];
     [_tagsArea.layer setBorderWidth:2];
     _tagsArea.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
-    _tagsArea.layer.cornerRadius = 4.0;
+    //_tagsArea.layer.cornerRadius = 4.0;
     
     if (SCREEN_HEIGHT >= 568)
-        _tagsArea.frame = CGRectMake(55, 38, _propertiesView.frame.size.width - 55 - 5, _propertiesView.frame.size.height - 38 - 4);
+        _tagsArea.frame = CGRectMake(59, 38, _propertiesView.frame.size.width - 55 - 12, _propertiesView.frame.size.height - 38 - 8);
     
     [_propertiesView addSubview:_tagsArea];
     
@@ -1244,7 +1256,7 @@ DeckModel * allCards;
             [self.deckView.currentCells addObject:[[CardModel alloc] initWithCardModel:card]];
         
         if (currentDeck.isInvalid)
-            [self.view addSubview:invalidDeckButton];
+            [_footerView addSubview:invalidDeckButton];
         
         [self.view addSubview:_deckLimitationsButton];
         
@@ -1255,6 +1267,10 @@ DeckModel * allCards;
             tagsString = [NSString stringWithFormat:@"%@%@ ", tagsString, [tag lowercaseString]];
         }
         _tagsArea.text = tagsString;
+    }
+    else{
+        _nameField.text = @"";
+        _tagsArea.text = @"";
     }
     
     [_footerView addSubview:self.deleteDeckButton];
@@ -1333,6 +1349,11 @@ DeckModel * allCards;
             else
                 return NO;
         } loadingText:@"Deleting..." failedText:@"Failed to delete deck."];
+    }
+    else
+    {
+        [self deleteDeckCancelButtonPressed]; //just to get rid of the dialogs
+        [self resetAllViews];
     }
 }
 

@@ -47,7 +47,6 @@
 		9069AAE5195501AB006D1D98 /* card_background_front_light_common.png in Resources */ = {isa = PBXBuildFile; fileRef = 9069AADE195501AB006D1D98 /* card_background_front_light_common.png */; };
 		9069AAE6195501AB006D1D98 /* card_background_front_lightning_common.png in Resources */ = {isa = PBXBuildFile; fileRef = 9069AADF195501AB006D1D98 /* card_background_front_lightning_common.png */; };
 		9069AAE7195501AB006D1D98 /* card_background_front_neutral_common.png in Resources */ = {isa = PBXBuildFile; fileRef = 9069AAE0195501AB006D1D98 /* card_background_front_neutral_common.png */; };
-		9069AB451957A903006D1D98 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9069AB381957A8F8006D1D98 /* Parse.framework */; };
 		907020441991437D00FDE444 /* gold_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 907020431991437D00FDE444 /* gold_icon.png */; };
 		9070204619914B1C00FDE444 /* like_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9070204519914B1C00FDE444 /* like_icon.png */; };
 		9070204B19915FD500FDE444 /* card_background_front_overlay_legendary.png in Resources */ = {isa = PBXBuildFile; fileRef = 9070204719915FD500FDE444 /* card_background_front_overlay_legendary.png */; };
@@ -172,7 +171,7 @@
 		90DA43CA1969DBDB00E44AED /* DeckChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DA43C91969DBDB00E44AED /* DeckChooserViewController.m */; };
 		90DA43CD1969DD9000E44AED /* CDCardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DA43CC1969DD9000E44AED /* CDCardModel.m */; };
 		90DA43D01969DD9D00E44AED /* CDDeckModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DA43CF1969DD9D00E44AED /* CDDeckModel.m */; };
-		90DA43D31969E4F100E44AED /* CardGameCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 90DA43D11969E4F100E44AED /* CardGameCoreData.xcdatamodeld */; };
+		90DA43D31969E4F100E44AED /* CardGame.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 90DA43D11969E4F100E44AED /* CardGame.xcdatamodeld */; };
 		90DA43D61969F6F200E44AED /* AbilityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DA43D51969F6F200E44AED /* AbilityTableViewCell.m */; };
 		90DA43D9196A222800E44AED /* CustomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DA43D8196A222800E44AED /* CustomScrollView.m */; };
 		90F35297191595C200601130 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F35296191595C200601130 /* Foundation.framework */; };
@@ -208,6 +207,7 @@
 		90F80FA119A3D3D9007571F4 /* arrow_left_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 90F80FA019A3D3D9007571F4 /* arrow_left_icon.png */; };
 		90F80FA319A63F4C007571F4 /* card_image_cardeditor_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 90F80FA219A63F4B007571F4 /* card_image_cardeditor_empty.png */; };
 		FA4025971956331300FCCBAB /* DeckEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4025961956331300FCCBAB /* DeckEditorViewController.m */; };
+		FA543CB119A9784000E70529 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA543CB019A9784000E70529 /* Parse.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -263,81 +263,6 @@
 		9069AAE0195501AB006D1D98 /* card_background_front_neutral_common.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card_background_front_neutral_common.png; path = "Card Game/card_background_front_neutral_common.png"; sourceTree = "<group>"; };
 		9069AAEC195624C7006D1D98 /* encode-sans.compressed-black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "encode-sans.compressed-black.ttf"; sourceTree = "<group>"; };
 		9069AAED195624C7006D1D98 /* encode-sans.compressed-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "encode-sans.compressed-bold.ttf"; sourceTree = "<group>"; };
-		9069AAF71957A8F8006D1D98 /* Ability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ability.h; sourceTree = "<group>"; };
-		9069AAF81957A8F8006D1D98 /* Ability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Ability.m; sourceTree = "<group>"; };
-		9069AAF91957A8F8006D1D98 /* AbilityWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AbilityWrapper.h; sourceTree = "<group>"; };
-		9069AAFA1957A8F8006D1D98 /* AbilityWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AbilityWrapper.m; sourceTree = "<group>"; };
-		9069AAFB1957A8F8006D1D98 /* AIPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AIPlayer.h; sourceTree = "<group>"; };
-		9069AAFC1957A8F8006D1D98 /* AIPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AIPlayer.m; sourceTree = "<group>"; };
-		9069AAFD1957A8F8006D1D98 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		9069AAFE1957A8F8006D1D98 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9069AB001957A8F8006D1D98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		9069AB021957A8F8006D1D98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		9069AB031957A8F8006D1D98 /* battle_background_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = battle_background_0.png; sourceTree = "<group>"; };
-		9069AB041957A8F8006D1D98 /* battle_background_0.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = battle_background_0.psd; sourceTree = "<group>"; };
-		9069AB051957A8F8006D1D98 /* card_background_front old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_background_front old.png"; sourceTree = "<group>"; };
-		9069AB061957A8F8006D1D98 /* card_background_front old.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "card_background_front old.psd"; sourceTree = "<group>"; };
-		9069AB071957A8F8006D1D98 /* card_background_front old2.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "card_background_front old2.psd"; sourceTree = "<group>"; };
-		9069AB081957A8F8006D1D98 /* card_background_front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_background_front.png; sourceTree = "<group>"; };
-		9069AB091957A8F8006D1D98 /* card_background_front.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = card_background_front.psd; sourceTree = "<group>"; };
-		9069AB0A1957A8F8006D1D98 /* card_background_front_common.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = card_background_front_common.psd; sourceTree = "<group>"; };
-		9069AB0B1957A8F8006D1D98 /* card_background_front_dark_common.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_background_front_dark_common.png; sourceTree = "<group>"; };
-		9069AB0C1957A8F8006D1D98 /* card_background_front_earth_common.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_background_front_earth_common.png; sourceTree = "<group>"; };
-		9069AB0D1957A8F8006D1D98 /* card_background_front_fire_common.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_background_front_fire_common.png; sourceTree = "<group>"; };
-		9069AB0E1957A8F8006D1D98 /* card_background_front_ice_common.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_background_front_ice_common.png; sourceTree = "<group>"; };
-		9069AB0F1957A8F8006D1D98 /* card_background_front_light_common.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_background_front_light_common.png; sourceTree = "<group>"; };
-		9069AB101957A8F8006D1D98 /* card_background_front_lightning_common.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_background_front_lightning_common.png; sourceTree = "<group>"; };
-		9069AB111957A8F8006D1D98 /* card_background_front_neutral_common.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_background_front_neutral_common.png; sourceTree = "<group>"; };
-		9069AB121957A8F8006D1D98 /* card_background_front_overlay old2.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "card_background_front_overlay old2.psd"; sourceTree = "<group>"; };
-		9069AB131957A8F8006D1D98 /* card_background_front_overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_background_front_overlay.png; sourceTree = "<group>"; };
-		9069AB141957A8F8006D1D98 /* card_background_front_overlay.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = card_background_front_overlay.psd; sourceTree = "<group>"; };
-		9069AB151957A8F8006D1D98 /* card_background_front_overlay_old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_background_front_overlay_old.png; sourceTree = "<group>"; };
-		9069AB161957A8F8006D1D98 /* card_background_front_overlay_old.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = card_background_front_overlay_old.psd; sourceTree = "<group>"; };
-		9069AB171957A8F8006D1D98 /* card_glow_select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_glow_select.png; sourceTree = "<group>"; };
-		9069AB181957A8F8006D1D98 /* card_glow_target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_glow_target.png; sourceTree = "<group>"; };
-		9069AB191957A8F8006D1D98 /* card_image_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_image_placeholder.png; sourceTree = "<group>"; };
-		9069AB1A1957A8F8006D1D98 /* cardgame-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "cardgame-Info.plist"; sourceTree = "<group>"; };
-		9069AB1B1957A8F8006D1D98 /* cardgame-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "cardgame-Prefix.pch"; sourceTree = "<group>"; };
-		9069AB1C1957A8F8006D1D98 /* CardModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardModel.h; sourceTree = "<group>"; };
-		9069AB1D1957A8F8006D1D98 /* CardModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardModel.m; sourceTree = "<group>"; };
-		9069AB1E1957A8F8006D1D98 /* CardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardView.h; sourceTree = "<group>"; };
-		9069AB1F1957A8F8006D1D98 /* CardView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardView.m; sourceTree = "<group>"; };
-		9069AB201957A8F8006D1D98 /* DeckEditorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeckEditorViewController.h; sourceTree = "<group>"; };
-		9069AB211957A8F8006D1D98 /* DeckEditorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeckEditorViewController.m; sourceTree = "<group>"; };
-		9069AB221957A8F8006D1D98 /* DeckModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeckModel.h; sourceTree = "<group>"; };
-		9069AB231957A8F8006D1D98 /* DeckModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeckModel.m; sourceTree = "<group>"; };
-		9069AB251957A8F8006D1D98 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9069AB261957A8F8006D1D98 /* end_turn_button_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = end_turn_button_disabled.png; sourceTree = "<group>"; };
-		9069AB271957A8F8006D1D98 /* end_turn_button_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = end_turn_button_up.png; sourceTree = "<group>"; };
-		9069AB281957A8F8006D1D98 /* field_edge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = field_edge.png; sourceTree = "<group>"; };
-		9069AB291957A8F8006D1D98 /* field_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = field_highlight.png; sourceTree = "<group>"; };
-		9069AB2A1957A8F8006D1D98 /* GameModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameModel.h; sourceTree = "<group>"; };
-		9069AB2B1957A8F8006D1D98 /* GameModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameModel.m; sourceTree = "<group>"; };
-		9069AB2C1957A8F8006D1D98 /* GameViewController+Animation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GameViewController+Animation.h"; sourceTree = "<group>"; };
-		9069AB2D1957A8F8006D1D98 /* GameViewController+Animation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "GameViewController+Animation.m"; sourceTree = "<group>"; };
-		9069AB2E1957A8F8006D1D98 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
-		9069AB2F1957A8F8006D1D98 /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
-		9069AB301957A8F8006D1D98 /* hero_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hero_default.png; sourceTree = "<group>"; };
-		9069AB311957A8F8006D1D98 /* hero_glow_select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hero_glow_select.png; sourceTree = "<group>"; };
-		9069AB321957A8F8006D1D98 /* hero_glow_target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hero_glow_target.png; sourceTree = "<group>"; };
-		9069AB331957A8F8006D1D98 /* highlight.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = highlight.psd; sourceTree = "<group>"; };
-		9069AB341957A8F8006D1D98 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		9069AB351957A8F8006D1D98 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9069AB361957A8F8006D1D98 /* MonsterCardModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MonsterCardModel.h; sourceTree = "<group>"; };
-		9069AB371957A8F8006D1D98 /* MonsterCardModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MonsterCardModel.m; sourceTree = "<group>"; };
-		9069AB381957A8F8006D1D98 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
-		9069AB391957A8F8006D1D98 /* PlayerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerModel.h; sourceTree = "<group>"; };
-		9069AB3A1957A8F8006D1D98 /* PlayerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerModel.m; sourceTree = "<group>"; };
-		9069AB3B1957A8F8006D1D98 /* PlayerMonsterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerMonsterView.h; sourceTree = "<group>"; };
-		9069AB3C1957A8F8006D1D98 /* PlayerMonsterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerMonsterView.m; sourceTree = "<group>"; };
-		9069AB3D1957A8F8006D1D98 /* SinglePlayerCards.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SinglePlayerCards.h; sourceTree = "<group>"; };
-		9069AB3E1957A8F8006D1D98 /* SinglePlayerCards.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SinglePlayerCards.m; sourceTree = "<group>"; };
-		9069AB3F1957A8F8006D1D98 /* SpellCardModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpellCardModel.h; sourceTree = "<group>"; };
-		9069AB401957A8F8006D1D98 /* SpellCardModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpellCardModel.m; sourceTree = "<group>"; };
-		9069AB411957A8F8006D1D98 /* StrokedLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StrokedLabel.h; sourceTree = "<group>"; };
-		9069AB421957A8F8006D1D98 /* StrokedLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StrokedLabel.m; sourceTree = "<group>"; };
-		9069AB431957A8F8006D1D98 /* ViewLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewLayer.h; sourceTree = "<group>"; };
-		9069AB441957A8F8006D1D98 /* ViewLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewLayer.m; sourceTree = "<group>"; };
 		907020431991437D00FDE444 /* gold_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gold_icon.png; path = "Card Game/gold_icon.png"; sourceTree = "<group>"; };
 		9070204519914B1C00FDE444 /* like_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = like_icon.png; path = "Card Game/like_icon.png"; sourceTree = "<group>"; };
 		9070204719915FD500FDE444 /* card_background_front_overlay_legendary.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card_background_front_overlay_legendary.png; path = "Card Game/card_background_front_overlay_legendary.png"; sourceTree = "<group>"; };
@@ -495,7 +420,7 @@
 		90DA43CC1969DD9000E44AED /* CDCardModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDCardModel.m; sourceTree = "<group>"; };
 		90DA43CE1969DD9D00E44AED /* CDDeckModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDDeckModel.h; path = ../CDDeckModel.h; sourceTree = "<group>"; };
 		90DA43CF1969DD9D00E44AED /* CDDeckModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDDeckModel.m; path = ../CDDeckModel.m; sourceTree = "<group>"; };
-		90DA43D21969E4F100E44AED /* CardGameCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CardGameCoreData.xcdatamodel; sourceTree = "<group>"; };
+		90DA43D21969E4F100E44AED /* CardGame.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CardGame.xcdatamodel; sourceTree = "<group>"; };
 		90DA43D41969F6F200E44AED /* AbilityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbilityTableViewCell.h; sourceTree = "<group>"; };
 		90DA43D51969F6F200E44AED /* AbilityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbilityTableViewCell.m; sourceTree = "<group>"; };
 		90DA43D7196A222800E44AED /* CustomScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomScrollView.h; sourceTree = "<group>"; };
@@ -558,6 +483,7 @@
 		90F80FA219A63F4B007571F4 /* card_image_cardeditor_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card_image_cardeditor_empty.png; path = "Card Game/card_image_cardeditor_empty.png"; sourceTree = "<group>"; };
 		FA4025951956331300FCCBAB /* DeckEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeckEditorViewController.h; sourceTree = "<group>"; };
 		FA4025961956331300FCCBAB /* DeckEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeckEditorViewController.m; sourceTree = "<group>"; };
+		FA543CB019A9784000E70529 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Card Game/Parse.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -565,7 +491,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9069AB451957A903006D1D98 /* Parse.framework in Frameworks */,
+				FA543CB119A9784000E70529 /* Parse.framework in Frameworks */,
 				907D9C1B193E43A80037C0CF /* SystemConfiguration.framework in Frameworks */,
 				907D9C19193E439B0037C0CF /* StoreKit.framework in Frameworks */,
 				907D9C17193E43950037C0CF /* Security.framework in Frameworks */,
@@ -626,88 +552,6 @@
 				9069AAE0195501AB006D1D98 /* card_background_front_neutral_common.png */,
 			);
 			name = Rarity;
-			sourceTree = "<group>";
-		};
-		9069AAF61957A8F8006D1D98 /* Card Game */ = {
-			isa = PBXGroup;
-			children = (
-				9069AAF71957A8F8006D1D98 /* Ability.h */,
-				9069AAF81957A8F8006D1D98 /* Ability.m */,
-				9069AAF91957A8F8006D1D98 /* AbilityWrapper.h */,
-				9069AAFA1957A8F8006D1D98 /* AbilityWrapper.m */,
-				9069AAFB1957A8F8006D1D98 /* AIPlayer.h */,
-				9069AAFC1957A8F8006D1D98 /* AIPlayer.m */,
-				9069AAFD1957A8F8006D1D98 /* AppDelegate.h */,
-				9069AAFE1957A8F8006D1D98 /* AppDelegate.m */,
-				9069AAFF1957A8F8006D1D98 /* Main_iPad.storyboard */,
-				9069AB011957A8F8006D1D98 /* Main_iPhone.storyboard */,
-				9069AB031957A8F8006D1D98 /* battle_background_0.png */,
-				9069AB041957A8F8006D1D98 /* battle_background_0.psd */,
-				9069AB051957A8F8006D1D98 /* card_background_front old.png */,
-				9069AB061957A8F8006D1D98 /* card_background_front old.psd */,
-				9069AB071957A8F8006D1D98 /* card_background_front old2.psd */,
-				9069AB081957A8F8006D1D98 /* card_background_front.png */,
-				9069AB091957A8F8006D1D98 /* card_background_front.psd */,
-				9069AB0A1957A8F8006D1D98 /* card_background_front_common.psd */,
-				9069AB0B1957A8F8006D1D98 /* card_background_front_dark_common.png */,
-				9069AB0C1957A8F8006D1D98 /* card_background_front_earth_common.png */,
-				9069AB0D1957A8F8006D1D98 /* card_background_front_fire_common.png */,
-				9069AB0E1957A8F8006D1D98 /* card_background_front_ice_common.png */,
-				9069AB0F1957A8F8006D1D98 /* card_background_front_light_common.png */,
-				9069AB101957A8F8006D1D98 /* card_background_front_lightning_common.png */,
-				9069AB111957A8F8006D1D98 /* card_background_front_neutral_common.png */,
-				9069AB121957A8F8006D1D98 /* card_background_front_overlay old2.psd */,
-				9069AB131957A8F8006D1D98 /* card_background_front_overlay.png */,
-				9069AB141957A8F8006D1D98 /* card_background_front_overlay.psd */,
-				9069AB151957A8F8006D1D98 /* card_background_front_overlay_old.png */,
-				9069AB161957A8F8006D1D98 /* card_background_front_overlay_old.psd */,
-				9069AB171957A8F8006D1D98 /* card_glow_select.png */,
-				9069AB181957A8F8006D1D98 /* card_glow_target.png */,
-				9069AB191957A8F8006D1D98 /* card_image_placeholder.png */,
-				9069AB1A1957A8F8006D1D98 /* cardgame-Info.plist */,
-				9069AB1B1957A8F8006D1D98 /* cardgame-Prefix.pch */,
-				9069AB1C1957A8F8006D1D98 /* CardModel.h */,
-				9069AB1D1957A8F8006D1D98 /* CardModel.m */,
-				9069AB1E1957A8F8006D1D98 /* CardView.h */,
-				9069AB1F1957A8F8006D1D98 /* CardView.m */,
-				9069AB201957A8F8006D1D98 /* DeckEditorViewController.h */,
-				9069AB211957A8F8006D1D98 /* DeckEditorViewController.m */,
-				9069AB221957A8F8006D1D98 /* DeckModel.h */,
-				9069AB231957A8F8006D1D98 /* DeckModel.m */,
-				9069AB241957A8F8006D1D98 /* InfoPlist.strings */,
-				9069AB261957A8F8006D1D98 /* end_turn_button_disabled.png */,
-				9069AB271957A8F8006D1D98 /* end_turn_button_up.png */,
-				9069AB281957A8F8006D1D98 /* field_edge.png */,
-				9069AB291957A8F8006D1D98 /* field_highlight.png */,
-				9069AB2A1957A8F8006D1D98 /* GameModel.h */,
-				9069AB2B1957A8F8006D1D98 /* GameModel.m */,
-				9069AB2C1957A8F8006D1D98 /* GameViewController+Animation.h */,
-				9069AB2D1957A8F8006D1D98 /* GameViewController+Animation.m */,
-				9069AB2E1957A8F8006D1D98 /* GameViewController.h */,
-				9069AB2F1957A8F8006D1D98 /* GameViewController.m */,
-				9069AB301957A8F8006D1D98 /* hero_default.png */,
-				9069AB311957A8F8006D1D98 /* hero_glow_select.png */,
-				9069AB321957A8F8006D1D98 /* hero_glow_target.png */,
-				9069AB331957A8F8006D1D98 /* highlight.psd */,
-				9069AB341957A8F8006D1D98 /* Images.xcassets */,
-				9069AB351957A8F8006D1D98 /* main.m */,
-				9069AB361957A8F8006D1D98 /* MonsterCardModel.h */,
-				9069AB371957A8F8006D1D98 /* MonsterCardModel.m */,
-				9069AB381957A8F8006D1D98 /* Parse.framework */,
-				9069AB391957A8F8006D1D98 /* PlayerModel.h */,
-				9069AB3A1957A8F8006D1D98 /* PlayerModel.m */,
-				9069AB3B1957A8F8006D1D98 /* PlayerMonsterView.h */,
-				9069AB3C1957A8F8006D1D98 /* PlayerMonsterView.m */,
-				9069AB3D1957A8F8006D1D98 /* SinglePlayerCards.h */,
-				9069AB3E1957A8F8006D1D98 /* SinglePlayerCards.m */,
-				9069AB3F1957A8F8006D1D98 /* SpellCardModel.h */,
-				9069AB401957A8F8006D1D98 /* SpellCardModel.m */,
-				9069AB411957A8F8006D1D98 /* StrokedLabel.h */,
-				9069AB421957A8F8006D1D98 /* StrokedLabel.m */,
-				9069AB431957A8F8006D1D98 /* ViewLayer.h */,
-				9069AB441957A8F8006D1D98 /* ViewLayer.m */,
-			);
-			path = "Card Game";
 			sourceTree = "<group>";
 		};
 		907020551992AC8100FDE444 /* GKClasses */ = {
@@ -998,7 +842,7 @@
 		90F35295191595C200601130 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9069AAF61957A8F8006D1D98 /* Card Game */,
+				FA543CB019A9784000E70529 /* Parse.framework */,
 				907D9C1A193E43A80037C0CF /* SystemConfiguration.framework */,
 				907D9C18193E439B0037C0CF /* StoreKit.framework */,
 				907D9C16193E43950037C0CF /* Security.framework */,
@@ -1026,15 +870,12 @@
 				90DA4365195F5DF300E44AED /* Card Editor Screen */,
 				90F352DF1916BBCC00601130 /* Cards */,
 				90DA4346195B25CC00E44AED /* Single Player */,
+				FA6D50B419AA41860084F492 /* CFViews */,
 				90F352A8191595C200601130 /* Main_iPhone.storyboard */,
 				90F352AB191595C200601130 /* Main_iPad.storyboard */,
-				90DA43D11969E4F100E44AED /* CardGameCoreData.xcdatamodeld */,
+				90DA43D11969E4F100E44AED /* CardGame.xcdatamodeld */,
 				90F352A5191595C200601130 /* AppDelegate.h */,
 				90F352A6191595C200601130 /* AppDelegate.m */,
-				90C528A8199D90D800750C54 /* CFLabel.h */,
-				90C528A9199D90D800750C54 /* CFLabel.m */,
-				90C528A5199D6CC100750C54 /* CFButton.h */,
-				90C528A6199D6CC100750C54 /* CFButton.m */,
 				90DA43CB1969DD9000E44AED /* CDCardModel.h */,
 				90DA43CC1969DD9000E44AED /* CDCardModel.m */,
 				90DA43CE1969DD9D00E44AED /* CDDeckModel.h */,
@@ -1135,6 +976,17 @@
 				90F80F9619A29317007571F4 /* card_1000.png */,
 			);
 			name = Singleplayer;
+			sourceTree = "<group>";
+		};
+		FA6D50B419AA41860084F492 /* CFViews */ = {
+			isa = PBXGroup;
+			children = (
+				90C528A8199D90D800750C54 /* CFLabel.h */,
+				90C528A9199D90D800750C54 /* CFLabel.m */,
+				90C528A5199D6CC100750C54 /* CFButton.h */,
+				90C528A6199D6CC100750C54 /* CFButton.m */,
+			);
+			name = CFViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1387,7 +1239,7 @@
 				FA4025971956331300FCCBAB /* DeckEditorViewController.m in Sources */,
 				90F80F9E19A3D28E007571F4 /* GameViewController+Tutorial.m in Sources */,
 				90DA436E195F833400E44AED /* CustomTextField.m in Sources */,
-				90DA43D31969E4F100E44AED /* CardGameCoreData.xcdatamodeld in Sources */,
+				90DA43D31969E4F100E44AED /* CardGame.xcdatamodeld in Sources */,
 				90456ECF198D588D00B807DC /* DeckCardCell.m in Sources */,
 				90F80F9B19A2BEFA007571F4 /* CustomView.m in Sources */,
 				90F352D519159A0300601130 /* CardModel.m in Sources */,
@@ -1398,30 +1250,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		9069AAFF1957A8F8006D1D98 /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9069AB001957A8F8006D1D98 /* Base */,
-			);
-			name = Main_iPad.storyboard;
-			sourceTree = "<group>";
-		};
-		9069AB011957A8F8006D1D98 /* Main_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9069AB021957A8F8006D1D98 /* Base */,
-			);
-			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		9069AB241957A8F8006D1D98 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9069AB251957A8F8006D1D98 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		90F3529F191595C200601130 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1548,29 +1376,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Brian Allen (U536PJZFA3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Brian Allen (U536PJZFA3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/dmadmin/Desktop/Card,
-					Game/Card,
-					Game,
-					"$(PROJECT_DIR)/Card",
-					Game,
-					/Users/dmadmin/Desktop/Card,
-					Game/Card,
-					Game,
-					"$(PROJECT_DIR)/Card",
-					Game,
-					"$(PROJECT_DIR)/Card",
-					Game,
-					"/Users/dmadmin/Desktop/Card\\ Game/Card\\ Game",
+					"$(SRCROOT)/",
+					"\"$(PROJECT_DIR)/Card Game\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Card Game/cardgame-Prefix.pch";
 				INFOPLIST_FILE = "Card Game/cardgame-Info.plist";
 				PRODUCT_NAME = cardgame;
-				PROVISIONING_PROFILE = "944053EC-E75D-45F2-8B8F-9201CB201254";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1580,29 +1397,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Brian Allen (U536PJZFA3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Brian Allen (U536PJZFA3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/dmadmin/Desktop/Card,
-					Game/Card,
-					Game,
-					"$(PROJECT_DIR)/Card",
-					Game,
-					/Users/dmadmin/Desktop/Card,
-					Game/Card,
-					Game,
-					"$(PROJECT_DIR)/Card",
-					Game,
-					"$(PROJECT_DIR)/Card",
-					Game,
-					"/Users/dmadmin/Desktop/Card\\ Game/Card\\ Game",
+					"$(SRCROOT)/",
+					"\"$(PROJECT_DIR)/Card Game\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Card Game/cardgame-Prefix.pch";
 				INFOPLIST_FILE = "Card Game/cardgame-Info.plist";
 				PRODUCT_NAME = cardgame;
-				PROVISIONING_PROFILE = "944053EC-E75D-45F2-8B8F-9201CB201254";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1631,13 +1437,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		90DA43D11969E4F100E44AED /* CardGameCoreData.xcdatamodeld */ = {
+		90DA43D11969E4F100E44AED /* CardGame.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				90DA43D21969E4F100E44AED /* CardGameCoreData.xcdatamodel */,
+				90DA43D21969E4F100E44AED /* CardGame.xcdatamodel */,
 			);
-			currentVersion = 90DA43D21969E4F100E44AED /* CardGameCoreData.xcdatamodel */;
-			path = CardGameCoreData.xcdatamodeld;
+			currentVersion = 90DA43D21969E4F100E44AED /* CardGame.xcdatamodel */;
+			path = CardGame.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

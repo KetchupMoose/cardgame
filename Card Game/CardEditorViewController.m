@@ -1364,7 +1364,7 @@ UIImage*CARD_EDITOR_EMPTY_IMAGE;
         else
             _currentCardView = [[CardView alloc] initWithModel:_currentCardModel withImage:CARD_EDITOR_EMPTY_IMAGE viewMode:cardViewModeEditor];
     }
-    else if (_currentCardModel.idNumber == NO_ID)
+    else if (_currentCardModel.idNumber == NO_ID && originalImage == nil)
         _currentCardView = [[CardView alloc] initWithModel:_currentCardModel withImage:CARD_EDITOR_EMPTY_IMAGE viewMode:cardViewModeEditor];
     else
         _currentCardView = [[CardView alloc] initWithModel:_currentCardModel withImage:originalImage viewMode:cardViewModeEditor];
@@ -2322,6 +2322,7 @@ UIImage*CARD_EDITOR_EMPTY_IMAGE;
             [noDupTags addObject:string];
     }
     
+    
     self.currentCardModel.tags = noDupTags;
     [userAllCards addObject:self.currentCardModel]; 
     [self publishCurrentCard];
@@ -2370,6 +2371,7 @@ UIImage*CARD_EDITOR_EMPTY_IMAGE;
                          
                          cardPF[@"cardVote"] = cardVotePF;
                          
+                         //maybe the uploading part should be in cloud, but probably not that dangerous
                          [cardPF saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                              if (succeeded)
                              {

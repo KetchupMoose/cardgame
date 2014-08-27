@@ -30,9 +30,9 @@ int SCREEN_WIDTH, SCREEN_HEIGHT;
     SCREEN_WIDTH = self.view.bounds.size.width;
     SCREEN_HEIGHT = self.view.bounds.size.height;
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = COLOUR_INTERFACE_BLUE_DARK;
     
-    self.deckView = [[DeckTableView alloc] initWithFrame:CGRectMake(230,0,90,SCREEN_HEIGHT-40)];
+    self.deckView = [[DeckTableView alloc] initWithFrame:CGRectMake(230,0,90,SCREEN_HEIGHT)];
     
     [self.view addSubview:self.deckView];
     [self.deckView setUserInteractionEnabled:YES];

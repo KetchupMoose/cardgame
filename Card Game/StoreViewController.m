@@ -67,8 +67,12 @@ CGSize keyboardSize;
     _headerView = [[UIView alloc]initWithFrame:CGRectMake(0,0,SCREEN_WIDTH, 60)];
     //_headerView.backgroundColor = [UIColor redColor];
     
-    _footerView = [[UIView alloc]initWithFrame:CGRectMake(0,SCREEN_HEIGHT-40,SCREEN_WIDTH, 40)];
-    _footerView.backgroundColor = [UIColor whiteColor];
+    _footerView = [[UIView alloc]initWithFrame:CGRectMake(0,SCREEN_HEIGHT-44,SCREEN_WIDTH, 44)];
+    //_footerView.backgroundColor = [UIColor whiteColor];
+    
+    CFLabel*footerBackground = [[CFLabel alloc] initWithFrame:CGRectMake(-8, 0, _footerView.frame.size.width+16, _footerView.frame.size.height+8)];
+    [footerBackground setBackgroundColor:COLOUR_INTERFACE_BLUE_DARK];
+    [_footerView addSubview:footerBackground];
     
     _cardsView = [[StoreCardsCollectionView alloc] initWithFrame:CGRectMake(0, _headerView.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height-_headerView.frame.size.height-_footerView.frame.size.height)];
     _cardsView.parentViewController = self;
@@ -83,7 +87,7 @@ CGSize keyboardSize;
     
     //------------------footer views------------------//
     
-    self.backButton = [[CFButton alloc] initWithFrame:CGRectMake(4, 4, 46, 32)];
+    self.backButton = [[CFButton alloc] initWithFrame:CGRectMake(4, 8, 46, 32)];
     [self.backButton setImage:[UIImage imageNamed:@"back_button"] forState:UIControlStateNormal];
     [self.backButton addTarget:self action:@selector(backButtonPressed)    forControlEvents:UIControlEventTouchUpInside];
     
@@ -91,7 +95,7 @@ CGSize keyboardSize;
     
     _userCardIcon = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 38)];
     [_userCardIcon setImage:CARD_ICON_IMAGE forState:UIControlStateNormal];
-    _userCardIcon.center = CGPointMake(SCREEN_WIDTH-25 ,20);
+    _userCardIcon.center = CGPointMake(SCREEN_WIDTH-25 ,24);
     [_footerView addSubview:_userCardIcon];
     UIImageView* userCardAddIcon = [[UIImageView alloc] initWithImage:ADD_ICON_IMAGE];
     userCardAddIcon.frame = CGRectMake(0, 0, 20, 20);
@@ -106,12 +110,12 @@ CGSize keyboardSize;
     _userCardLabel.strokeOn = YES;
     _userCardLabel.strokeThickness = 3;
     _userCardLabel.strokeColour = [UIColor blackColor];
-    _userCardLabel.center = CGPointMake(SCREEN_WIDTH-25, 24);
+    _userCardLabel.center = CGPointMake(SCREEN_WIDTH-25, 28);
     [_footerView addSubview:_userCardLabel];
     
     _userGoldIcon = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 38, 38)];
     [_userGoldIcon setImage:GOLD_ICON_IMAGE forState:UIControlStateNormal];
-    _userGoldIcon.center = CGPointMake(SCREEN_WIDTH-80 ,20);
+    _userGoldIcon.center = CGPointMake(SCREEN_WIDTH-80 ,24);
     [_userGoldIcon addTarget:self action:@selector(openBuyGoldView)    forControlEvents:UIControlEventTouchUpInside];
     [_footerView addSubview:_userGoldIcon];
     UIImageView* userGoldAddIcon = [[UIImageView alloc] initWithImage:ADD_ICON_IMAGE];
@@ -126,12 +130,12 @@ CGSize keyboardSize;
     _userGoldLabel.strokeOn = YES;
     _userGoldLabel.strokeThickness = 3;
     _userGoldLabel.strokeColour = [UIColor blackColor];
-    _userGoldLabel.center = CGPointMake(SCREEN_WIDTH-80, 24);
+    _userGoldLabel.center = CGPointMake(SCREEN_WIDTH-80, 28);
     [_footerView addSubview:_userGoldLabel];
     
     _userLikesIcon = [[UIImageView alloc] initWithImage:LIKE_ICON_IMAGE];
     _userLikesIcon.frame = CGRectMake(0, 0, 38, 38);
-    _userLikesIcon.center = CGPointMake(SCREEN_WIDTH-135 ,20);
+    _userLikesIcon.center = CGPointMake(SCREEN_WIDTH-135 ,24);
     [_footerView addSubview:_userLikesIcon];
     
     _userLikesLabel = [[StrokedLabel alloc] initWithFrame:CGRectMake(0,0, 155, 40)];
@@ -141,7 +145,7 @@ CGSize keyboardSize;
     _userLikesLabel.strokeOn = YES;
     _userLikesLabel.strokeThickness = 3;
     _userLikesLabel.strokeColour = [UIColor blackColor];
-    _userLikesLabel.center = CGPointMake(SCREEN_WIDTH-135, 24);
+    _userLikesLabel.center = CGPointMake(SCREEN_WIDTH-135, 28);
     [_footerView addSubview:_userLikesLabel];
     
     //-----------------Card info views----------------//
@@ -286,7 +290,7 @@ CGSize keyboardSize;
     [_cardInfoView addSubview:_cardTagsLabel];
     
     //---------------search view-------------------//
-    _searchToggleButton = [[CFButton alloc] initWithFrame:CGRectMake(4 + 100, 4, 46, 32)];
+    _searchToggleButton = [[CFButton alloc] initWithFrame:CGRectMake(4 + 100, 8, 46, 32)];
     _searchToggleButton.buttonStyle = CFButtonStyleToggle;
     [_searchToggleButton setTextSize:9];
     _searchToggleButton.label.text = @"Search";
@@ -297,10 +301,10 @@ CGSize keyboardSize;
     
     [_footerView addSubview:_searchToggleButton];
     
-    _searchView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-40, self.view.bounds.size.width, 250)];
+    _searchView = [[CFLabel alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-40, self.view.bounds.size.width, 260)];
     [self.view insertSubview:_searchView aboveSubview:_cardsView];
     [_searchView setUserInteractionEnabled:YES];
-    [_searchView setBackgroundColor:[UIColor whiteColor]];
+    [_searchView setBackgroundColor:COLOUR_INTERFACE_BLUE_DARK];
     
     UILabel*searchLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
     searchLabel.font = [UIFont fontWithName:cardMainFont size:22];
@@ -323,7 +327,8 @@ CGSize keyboardSize;
     [_searchNameField.layer setBorderColor:[UIColor blackColor].CGColor];
     [_searchNameField.layer setBorderWidth:2];
     _searchNameField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
-    _searchNameField.layer.cornerRadius = 4.0;
+    //_searchNameField.layer.cornerRadius = 4.0;
+    [_searchNameField setBackgroundColor:COLOUR_INTERFACE_BLUE_LIGHT];
     
     [_searchView addSubview:_searchNameField];
     
@@ -347,7 +352,8 @@ CGSize keyboardSize;
     [_searchTagsField.layer setBorderWidth:2];
     [_searchTagsField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     _searchTagsField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
-    _searchTagsField.layer.cornerRadius = 4.0;
+    //_searchTagsField.layer.cornerRadius = 4.0;
+    [_searchTagsField setBackgroundColor:COLOUR_INTERFACE_BLUE_LIGHT];
     
     [_searchView addSubview:_searchTagsField];
     
@@ -371,7 +377,8 @@ CGSize keyboardSize;
     [_searchIDField.layer setBorderWidth:2];
     [_searchIDField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     _searchIDField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
-    _searchIDField.layer.cornerRadius = 4.0;
+    //_searchIDField.layer.cornerRadius = 4.0;
+    [_searchIDField setBackgroundColor:COLOUR_INTERFACE_BLUE_LIGHT];
     
     [_searchView addSubview:_searchIDField];
     
@@ -391,12 +398,12 @@ CGSize keyboardSize;
     [_searchView addSubview:searchButton];
     
     //---------------filter view------------------//
-    _filterView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-40, self.view.bounds.size.width, 250)];
+    _filterView = [[CFLabel alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-40, self.view.bounds.size.width, 258)];
     [self.view insertSubview:_filterView aboveSubview:_searchView];
     [_filterView setUserInteractionEnabled:YES];
-    [_filterView setBackgroundColor:[UIColor whiteColor]];
+    [_filterView setBackgroundColor:COLOUR_INTERFACE_BLUE_DARK];
     
-    _filterToggleButton = [[CFButton alloc] initWithFrame:CGRectMake(4 + 50, 4, 46, 32)];
+    _filterToggleButton = [[CFButton alloc] initWithFrame:CGRectMake(4 + 50, 8, 46, 32)];
     _filterToggleButton.buttonStyle = CFButtonStyleToggle;
     _filterToggleButton.label.text = @"Filter";
     [_filterToggleButton setTextSize:9];
@@ -524,15 +531,29 @@ CGSize keyboardSize;
     _categoryTabs = [NSMutableArray arrayWithCapacity:7];
     for (int i = 0; i < 5; i++)
     {
-        UIButton*categoryButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/5*i,0,SCREEN_WIDTH/5 - (i == 4 ? 0 : 1),_headerView.frame.size.height)];
+        CFButton*categoryButton = [[CFButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/5*i,0,SCREEN_WIDTH/5 + (i == 4 ? 0 : 2),_headerView.frame.size.height + 2)];
         NSLog(@"%f %f", categoryButton.frame.size.width, categoryButton.frame.size.height);
-        [categoryButton setImage:[UIImage imageNamed:@"category_tab_enabled"] forState:UIControlStateNormal];
-        [categoryButton setImage:[UIImage imageNamed:@"category_tab_disabled"] forState:UIControlStateDisabled];
+        [categoryButton setupAsTab];
+        [categoryButton setTextSize:11];
+        //[categoryButton setImage:[UIImage imageNamed:@"category_tab_enabled"] forState:UIControlStateNormal];
+        //[categoryButton setImage:[UIImage imageNamed:@"category_tab_disabled"] forState:UIControlStateDisabled];
         //[categoryButton setBackgroundColor:COLOUR_INTERFACE_BLUE];
         [categoryButton addTarget:self action:@selector(categoryButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         
         [_headerView addSubview:categoryButton];
         
+        if (i == storeCategoryFeatured)
+            categoryButton.label.text = @"Featured";
+        else if (i == storeCategoryNewest)
+            categoryButton.label.text  = @"Newest";
+        else if (i == storeCategoryPopular)
+            categoryButton.label.text = @"Popular";
+        else if (i == storeCategoryOwned)
+            categoryButton.label.text = @"Owned";
+        else if (i == storeCategoryDesigned)
+            categoryButton.label.text = @"Designed";
+        
+        /*
         StrokedLabel*categoryLabel = [[StrokedLabel alloc]initWithFrame:categoryButton.bounds];
         categoryLabel.textAlignment = NSTextAlignmentCenter;
         categoryLabel.textColor = [UIColor whiteColor];
@@ -552,13 +573,16 @@ CGSize keyboardSize;
         else if (i == storeCategoryDesigned)
             categoryLabel.text = @"Designed";
         [categoryButton addSubview:categoryLabel];
+         */
         //costLabel.center = costFilterButton.center;
         
         [_categoryTabs addObject:categoryButton];
         
         //default selects the first tab
         if (i == 0)
-            [categoryButton setEnabled:NO];
+            [categoryButton setSelected:YES];
+        else
+            [categoryButton setSelected:NO];
     }
     
     //--------------blank card view-----------------//
@@ -847,7 +871,7 @@ CGSize keyboardSize;
         _searchResult.center = CGPointMake(_cardsView.bounds.size.width/2, _cardsView.bounds.size.height/5);
         [UIView animateWithDuration:0.4 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
                          animations:^{
-                             [_filterView setFrame:CGRectMake(filterViewFrame.origin.x, filterViewFrame.origin.y - filterViewFrame.size.height, filterViewFrame.size.width, filterViewFrame.size.height)];
+                             [_filterView setFrame:CGRectMake(filterViewFrame.origin.x, filterViewFrame.origin.y - filterViewFrame.size.height, filterViewFrame.size.width, filterViewFrame.size.height+8)];
                          }
                          completion:^(BOOL completed){
                              
@@ -889,7 +913,7 @@ CGSize keyboardSize;
         _searchResult.center = CGPointMake(_cardsView.bounds.size.width/2, _cardsView.bounds.size.height/5);
         [UIView animateWithDuration:0.4 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
                          animations:^{
-                             [_searchView setFrame:CGRectMake(searchViewFrame.origin.x, searchViewFrame.origin.y - searchViewFrame.size.height, searchViewFrame.size.width, searchViewFrame.size.height)];
+                             [_searchView setFrame:CGRectMake(searchViewFrame.origin.x, searchViewFrame.origin.y - searchViewFrame.size.height, searchViewFrame.size.width, searchViewFrame.size.height+8)];
                          }
                          completion:^(BOOL completed){
                              
@@ -1014,11 +1038,11 @@ CGSize keyboardSize;
             _storeCategoryTab = i;
             [self loadCards];
             
-            [button setEnabled:NO];
+            [button setSelected:YES];
         }
         else
         {
-            [button setEnabled:YES];
+            [button setSelected:NO];
         }
         i++;
     }
@@ -1246,9 +1270,10 @@ CGSize keyboardSize;
     if (!foundCardPF)
     {
         NSLog(@"ERROR: Could not find cardPF for a card that's already loaded");
+        [self closeCardInfoView];
         return;
     }
-     
+    
     [_cardView removeFromSuperview];
     
     CardView*originalView = cardModel.cardView;
@@ -1284,12 +1309,20 @@ CGSize keyboardSize;
     _likeHintLabel.text = @"";
     _editHintLabel.text = @"";
     
+    int currentCardIndex = (int)[_cardsView.currentCards indexOfObject:_cardView.cardModel];
+    if (currentCardIndex >= _cardsView.currentSales.count || currentCardIndex < 0)
+    {
+        //invalid index
+        NSLog(@"ERROR: Invalid index for a card that's already loaded");
+        [self closeCardInfoView]; //TODO maybe move this to parent function so cardview won't even pop up at all
+        return;
+    }
+    
     [_buyButton removeFromSuperview];
     [_sellButton removeFromSuperview];
     [_cardInfoView addSubview:_likeButton];
     [_cardInfoView addSubview:_editButton];
     
-    int currentCardIndex = (int)[_cardsView.currentCards indexOfObject:_cardView.cardModel];
     PFObject *salePF = _cardsView.currentSales[currentCardIndex];
     
     //cannot buy if already owns it, or not enough gold
@@ -1438,8 +1471,7 @@ CGSize keyboardSize;
         
         if (currentCardIndex >= 0 && currentCardIndex < _cardsView.currentSales.count)
         {
-            int cost = [GameStore getCardSellPrice:_cardView.cardModel];
-            
+            /*
             userGold += cost;
             if (userGold < 0)
                 userGold = 0; //not suppose to happen anyways
@@ -1461,6 +1493,29 @@ CGSize keyboardSize;
             [self updateFooterViews];
             
             //[userPF saveInBackground]; //saved by setOwnedCard
+            */
+            
+            int cost = [GameStore getCardSellPrice:_cardView.cardModel];
+            
+            NSError*error;
+            [PFCloud callFunction:@"sellCard" withParameters:@{
+                                                               @"cardNumber" : @(_cardView.cardModel.idNumber),
+                                                               @"cost" : @(cost)} error:&error];
+            
+            if (!error)
+            {
+                userGold += cost;
+                [UserModel removeOwnedCard:_cardView.cardModel.idNumber];
+                
+                [self animateGoldChange:cost];
+                
+                [userPF fetch]; //can have error but it's not important
+                
+                [self updateCardInfoView:_cardView.cardModel];
+                [self updateFooterViews];
+            }
+            else
+                NSLog(@"%@", [error localizedDescription]);
             
             return YES;
         }
@@ -1497,11 +1552,13 @@ CGSize keyboardSize;
                 
                 if (stockSize > 0)
                 {
+                    /*
                     stockSize = @([stockSize intValue] - 1);
                     salePF[@"stock"] = stockSize;
                     
                     NSError*error;
-                    [salePF save:&error]; //TODO should be done through server
+                    
+                    [salePF save:&error];
                     if (error)
                         return NO;
                     
@@ -1513,7 +1570,7 @@ CGSize keyboardSize;
                     userPF[@"gold"] = @(userGold);
                     
                     [userAllCards addObject:_cardView.cardModel];
-                    [UserModel saveCard:_cardView.cardModel];
+                    //[UserModel saveCard:_cardView.cardModel]; //old CD stuff
                     
                     BOOL succ = [UserModel setOwnedCard:_cardView.cardModel];
                     
@@ -1530,6 +1587,32 @@ CGSize keyboardSize;
                     [self updateFooterViews];
                     
                     //[userPF saveInBackground]; //saved by setOwnedCard
+                    */
+                    
+                    int cost = [GameStore getCardCost:_cardView.cardModel];
+                    
+                    [PFCloud callFunction:@"buyCard" withParameters:@{
+                                                                       @"cardID" : _cardView.cardModel.cardPF.objectId,
+                                                                       @"saleID" : salePF.objectId,
+                                                                       @"cost" : @(cost)
+                                                                    } error:&error];
+                    
+                    if (!error)
+                    {
+                        userGold -= cost;
+                        [userAllCards addObject:_cardView.cardModel];
+                        
+                        [self animateGoldChange:-cost];
+                        
+                        //unimportant fetches
+                        [userPF fetch];
+                        [salePF fetch]; //stock has been updated
+                        
+                        [self updateCardInfoView:_cardView.cardModel];
+                        [self updateFooterViews];
+                    }
+                    else
+                        NSLog(@"%@", [error localizedDescription]);
                     
                     return YES;
                 }
@@ -1556,8 +1639,8 @@ CGSize keyboardSize;
 
 -(void)likeButtonPressed
 {
-    //TODO all of these functions should be actually on cloud
     [self showActivityIndicatorWithBlock:^BOOL{
+        /*
         NSNumber *originalLikes = userPF[@"likes"];
         userPF[@"likes"] = @([userPF[@"likes"] intValue] - 1);
         
@@ -1608,8 +1691,49 @@ CGSize keyboardSize;
         
         [self updateCardInfoView:_cardView.cardModel];
         [self updateFooterViews];
+        */
         
-        return YES;
+        //used for updating client-side stuff
+        int originalLikes = _cardView.cardModel.likes;
+        
+        int currentCardIndex = [_cardsView.currentCards indexOfObject:_cardView.cardModel];
+        PFObject *salePF = _cardsView.currentSales[currentCardIndex];
+        
+        NSLog(@"%@",  userPF.objectId);
+        
+        NSError*error;
+        [PFCloud callFunction:@"likeCard" withParameters:@{
+                                                               @"cardID" : _cardView.cardModel.cardPF.objectId,
+                                                               @"saleID" : salePF.objectId} error:&error];
+        
+        if (!error)
+        {
+            userGold += LIKE_CARD_GOLD_GAIN;
+            
+            //play animation
+            [self animateLikeChange:-1];
+            [self animateGoldChange:LIKE_CARD_GOLD_GAIN];
+            
+            int currentCardIndex = [_cardsView.currentCards indexOfObject:_cardView.cardModel];
+            PFObject *salePF = _cardsView.currentSales[currentCardIndex];
+            
+            //these fetches failing is not critical, only client will get wrong data
+            [salePF fetch];
+            [_cardPF fetch];
+            [userPF fetch];
+            
+            int index = [_cardsView.currentCardsPF indexOfObject:_cardPF];
+            [_cardsView.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
+            _likesLabel.text = [NSString stringWithFormat:@"%d", [_cardPF[@"likes"] intValue]];
+            
+            [self updateCardInfoView:_cardView.cardModel];
+            
+            [self updateFooterViews];
+        }
+        else
+            NSLog(@"%@", [error localizedDescription]);
+        
+        return error == nil;
         
     } loadingText:@"Processing..." failedText:@"Error liking card."];
 }
